@@ -54,7 +54,7 @@ namespace Battleship
         public static bool IsMouseInRectangle(int x, int y, int w, int h)
         {
             Point2D mouse;
-            bool result = false;
+            bool result=false;
 
             mouse = SwinGame.MousePosition();
 
@@ -316,12 +316,12 @@ namespace Battleship
             foreach (Sprite s in _Animations)
             {
                 SwinGame.UpdateSprite(s);
-                /*
-                if (SwinGame.sprite_animation_has_ended(s))
+                
+                if (SwinGame.SpriteAnimationHasEnded(s))
                 {
                     ended.Add(s);
                 }
-                */
+                
             }
 
             foreach (Sprite s in ended)
