@@ -1,21 +1,26 @@
 ﻿// '' <summary>
 // '' The different AI levels.
 // '' </summary>
-public enum AIOption
+
+namespace Battleship
 {
 
-    // '' <summary>
-    // '' Easy, total random shooting
-    // '' </summary>
-    Easy,
+    public enum AIOption
+    {
 
-    // '' <summary>
-    // '' Medium, marks squares around hits
-    // '' </summary>
-    Medium,
+        // '' <summary>
+        // '' Easy, total random shooting
+        // '' </summary>
+        Easy,
 
-    // '' <summary>
-    // '' As medium, but removes shots once it misses
-    // '' </summary>
-    Hard,
+        // '' <summary>
+        // '' Medium, marks squares around hits
+        // '' </summary>
+        Medium,
+
+        // '' <summary>
+        // '' As medium, but removes shots once it misses
+        // '' </summary>
+        Hard,
+    }
 }
