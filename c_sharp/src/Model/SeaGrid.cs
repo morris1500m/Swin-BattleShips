@@ -8,18 +8,18 @@
 /// </remarks>
 /// 
 
-using System.Collections.Generic;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Battleship
 {
-
     public class SeaGrid : ISeaGrid
     {
         private const int _WIDTH = 10;
         private const int _HEIGHT = 10;
 
-        private Tile[,] _GameTiles = new Tile[Width, Height];
+        private Tile[,] _GameTiles = new Tile[_WIDTH, _HEIGHT];
         private Dictionary<ShipName, Ship> _Ships;
         private int _ShipsKilled = 0;
 
@@ -73,7 +73,7 @@ namespace Battleship
         /// <returns></returns>
         //INSTANT C# NOTE: C# does not support parameterized properties - the following property has been rewritten as a function:
         //ORIGINAL LINE: Public ReadOnly Property Item(ByVal x As Integer, ByVal y As Integer) As TileView Implements ISeaGrid.Item
-        public TileView Item(int x, int y)
+        public TileView get_Item(int x, int y)
         {
             return _GameTiles[x, y].View;
         }
@@ -146,7 +146,7 @@ namespace Battleship
                 int dRow = 0;
                 int dCol = 0;
 
-                if (direction == direction.LeftRight)
+                if (direction == Direction.LeftRight)
                 {
                     dRow = 0;
                     dCol = 1;

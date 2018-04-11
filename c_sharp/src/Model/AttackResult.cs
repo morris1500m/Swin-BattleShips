@@ -1,26 +1,22 @@
-﻿// '' <summary>
-// '' AttackResult gives the result after a shot has been made.
-// '' </summary>
+﻿/// <summary>
+/// AttackResult gives the result after a shot has been made.
+/// </summary>
+/// 
 namespace Battleship
 {
     public class AttackResult
     {
-
         private ResultOfAttack _Value;
-
         private Ship _Ship;
-
         private string _Text;
-
         private int _Row;
-
         private int _Column;
 
-        // '' <summary>
-        // '' The result of the attack
-        // '' </summary>
-        // '' <value>The result of the attack</value>
-        // '' <returns>The result of the attack</returns>
+        /// <summary>
+        /// The result of the attack
+        /// </summary>
+        /// <value>The result of the attack</value>
+        /// <returns>The result of the attack</returns>
         public ResultOfAttack Value
         {
             get
@@ -29,6 +25,11 @@ namespace Battleship
             }
         }
 
+        /// <summary>
+        /// The ship, if any, involved in this result
+        /// </summary>
+        /// <value>The ship, if any, involved in this result</value>
+        /// <returns>The ship, if any, involved in this result</returns>
         public Ship Ship
         {
             get
@@ -37,6 +38,12 @@ namespace Battleship
             }
         }
 
+        /// <summary>
+        /// A textual description of the result.
+        /// </summary>
+        /// <value>A textual description of the result.</value>
+        /// <returns>A textual description of the result.</returns>
+        /// <remarks>A textual description of the result.</remarks>
         public string Text
         {
             get
@@ -45,6 +52,9 @@ namespace Battleship
             }
         }
 
+        /// <summary>
+        /// The row where the attack occurred
+        /// </summary>
         public int Row
         {
             get
@@ -53,6 +63,9 @@ namespace Battleship
             }
         }
 
+        /// <summary>
+        /// The column where the attack occurred
+        /// </summary>
         public int Column
         {
             get
@@ -61,6 +74,10 @@ namespace Battleship
             }
         }
 
+        /// <summary>
+        /// Set the _Value to the PossibleAttack value
+        /// </summary>
+        /// <param name="value">either hit, miss, destroyed, shotalready</param>
         public AttackResult(ResultOfAttack value, string text, int row, int column)
         {
             _Value = value;
@@ -70,29 +87,28 @@ namespace Battleship
             _Column = column;
         }
 
-        // '' <summary>
-        // '' Set the _Value to the PossibleAttack value, and the _Ship to the ship
-        // '' </summary>
-        // '' <param name="value">either hit, miss, destroyed, shotalready</param>
-        // '' <param name="ship">the ship information</param>
-        public AttackResult(ResultOfAttack value, Ship ship, string text, int row, int column) :
-                this(value, text, row, column)
+        /// <summary>
+        /// Set the _Value to the PossibleAttack value, and the _Ship to the ship
+        /// </summary>
+        /// <param name="value">either hit, miss, destroyed, shotalready</param>
+        /// <param name="ship">the ship information</param>
+        public AttackResult(ResultOfAttack value, Ship ship, string text, int row, int column) : this(value, text, row, column)
         {
             _Ship = ship;
         }
 
-        // '' <summary>
-        // '' Displays the textual information about the attack
-        // '' </summary>
-        // '' <returns>The textual information about the attack</returns>
+        /// <summary>
+        /// Displays the textual information about the attack
+        /// </summary>
+        /// <returns>The textual information about the attack</returns>
         public override string ToString()
         {
-            if ((_Ship == null))
+            if (_Ship == null)
             {
                 return Text;
             }
 
-            return (Text + (" " + _Ship.Name));
+            return Text + " " + _Ship.Name;
         }
     }
 }
