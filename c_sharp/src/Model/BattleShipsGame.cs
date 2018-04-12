@@ -89,22 +89,27 @@ namespace Battleship
         {
             AttackResult newAttack = null;
             int otherPlayer = (_playerIndex + 1) % 2;
-
+            Console.WriteLine("in Shoot");
             newAttack = Player.Shoot(row, col);
-
+            Console.WriteLine("after newAttack");
             //Will exit the game when all players ships are destroyed
             if (_players[otherPlayer].IsDestroyed)
             {
+                Console.WriteLine("exit game");
                 newAttack = new AttackResult(ResultOfAttack.GameOver, newAttack.Ship, newAttack.Text, row, col);
             }
 
             if (AttackCompleted != null)
+            {
                 AttackCompleted(this, newAttack);
+                Console.WriteLine("attack completed");
+            }
 
             //change player if the last hit was a miss
             if (newAttack.Value == ResultOfAttack.Miss)
             {
                 _playerIndex = otherPlayer;
+                Console.WriteLine("change player");
             }
 
             return newAttack;
