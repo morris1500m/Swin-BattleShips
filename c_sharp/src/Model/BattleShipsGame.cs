@@ -32,6 +32,8 @@ namespace Battleship
         private Player[] _players = new Player[3];
         private int _playerIndex = 0;
 
+ //       private TurnTimer _timer = new TurnTimer();
+
         /// <summary>
         /// The current player.
         /// </summary>
@@ -66,6 +68,10 @@ namespace Battleship
             {
                 throw new ApplicationException("You cannot add another player, the game already has two players.");
             }
+        }
+
+        public BattleShipsGame() {
+        //    _timer.StartTimer();
         }
 
         /// <summary>
@@ -108,11 +114,27 @@ namespace Battleship
             //change player if the last hit was a miss
             if (newAttack.Value == ResultOfAttack.Miss)
             {
-                _playerIndex = otherPlayer;
+                TogglePlayer();
                 Console.WriteLine("change player");
+            } else if (Player == GameController.HumanPlayer) {
+                GameController.Timer.StartTimer();
             }
 
             return newAttack;
+        }
+
+        public void TogglePlayer() {
+            Console.WriteLine("togglePlayer");
+            int otherPlayer = (_playerIndex + 1) % 2;
+
+            if (Player != GameController.HumanPlayer)
+            {
+                GameController.Timer.StartTimer();
+            }
+            else {
+                GameController.Timer.StopTimer();
+            }
+            _playerIndex = otherPlayer;
         }
     }
 }

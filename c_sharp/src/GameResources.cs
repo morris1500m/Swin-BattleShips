@@ -10,6 +10,7 @@ namespace Battleship
         private static void LoadFonts()
         {
             NewFont("ArialLarge", "arial.ttf", 80);
+            NewFont("ArialMed", "arial.ttf", 15);
             NewFont("Courier", "cour.ttf", 14);
             NewFont("CourierSmall", "cour.ttf", 8);
             NewFont("Menu", "ffaccess.ttf", 8);
@@ -52,6 +53,7 @@ namespace Battleship
             NewSound("Miss", "watershot.wav");
             NewSound("Winner", "winner.wav");
             NewSound("Lose", "lose.wav");
+            NewSound("Beep", "beep.wav");
         }
 
         private static void LoadMusic()

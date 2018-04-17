@@ -21,6 +21,8 @@ namespace Battleship
 
         private static AIOption _aiSetting;
 
+        public static TurnTimer _timer;
+
         /// <summary>
         /// Returns the current state of the game, indicating which screen is
         /// currently being used
@@ -58,6 +60,14 @@ namespace Battleship
             get
             {
                 return _ai;
+            }
+        }
+
+        public static TurnTimer Timer
+        {
+            get
+            {
+                return _timer;
             }
         }
 
@@ -101,6 +111,8 @@ namespace Battleship
             }
 
             _human = new Player(_theGame);
+            _timer = new TurnTimer(_theGame);
+            _timer.StartTimer();
 
             //AddHandler _human.PlayerGrid.Changed, AddressOf GridChanged
             _ai.PlayerGrid.Changed += GridChanged;
@@ -261,7 +273,7 @@ namespace Battleship
         /// <remarks>
         /// Checks the attack result once the attack is complete.
         /// </remarks>
-        private static void AIAttack()
+        public static void AIAttack()
         {
             AttackResult result = _theGame.Player.Attack();
             CheckAttackResult(result);
@@ -303,31 +315,32 @@ namespace Battleship
         {
             //Read incoming input events
             SwinGame.ProcessEvents();
-
+            
             switch (CurrentState)
-            {
-                case GameState.ViewingMainMenu:
-                    MenuController.HandleMainMenuInput();
-                    break;
-                case GameState.ViewingGameMenu:
-                    MenuController.HandleGameMenuInput();
-                    break;
-                case GameState.AlteringSettings:
-                    MenuController.HandleSetupMenuInput();
-                    break;
-                case GameState.Deploying:
-                    DeploymentController.HandleDeploymentInput();
-                    break;
-                case GameState.Discovering:
-                    DiscoveryController.HandleDiscoveryInput();
-                    break;
-                case GameState.EndingGame:
-                    EndingGameController.HandleEndOfGameInput();
-                    break;
-                case GameState.ViewingHighScores:
-                    HighScoreController.HandleHighScoreInput();
-                    break;
-            }
+                {
+                    case GameState.ViewingMainMenu:
+                        MenuController.HandleMainMenuInput();
+                        break;
+                    case GameState.ViewingGameMenu:
+                        MenuController.HandleGameMenuInput();
+                        break;
+                    case GameState.AlteringSettings:
+                        MenuController.HandleSetupMenuInput();
+                        break;
+                    case GameState.Deploying:
+                        DeploymentController.HandleDeploymentInput();
+                        break;
+                    case GameState.Discovering:
+                        DiscoveryController.HandleDiscoveryInput();
+                        break;
+                    case GameState.EndingGame:
+                        EndingGameController.HandleEndOfGameInput();
+                        break;
+                    case GameState.ViewingHighScores:
+                        HighScoreController.HandleHighScoreInput();
+                        break;
+                }
+            
 
             UtilityFunctions.UpdateAnimations();
         }
